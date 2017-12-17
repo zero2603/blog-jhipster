@@ -1,0 +1,59 @@
+<div>
+    <h2 data-translate="blogApp.post.home.title">Posts</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="post.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs-down"  data-translate="blogApp.post.home.createLabel">
+                        Create new Post
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'blogApp.post.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+
+    <div ng-repeat="post in vm.posts" style="margin: 30px 124px">
+            <div align="center">
+                <a ng-if="post.image" ui-sref="post-detail({id:post.id})">
+                    <img data-ng-src="{{'data:' + post.imageContentType + ';base64,' + post.image}}" style="" alt="post image"/>
+                </a>
+            </div>
+            <h3><a ui-sref="post-detail({id:post.id})">{{post.title}}</a></h3>
+            <small>Post on {{post.date}} in {{post.categories.name}}</small>
+            <div align="justify">{{post.content | limitTo: 300}}...</div>
+            <div class="btn-group flex-btn-group-container">
+                    <button type="submit"
+                            ui-sref="post.edit({id:post.id})"
+                            class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                    </button>
+                    <button type="submit"
+                            ui-sref="post.delete({id:post.id})"
+                            class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                    </button>
+                </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+entity Categories{
+	name String required,
+	avatar ImageBlob,
+}
+entity Post{
+	id Integer, 
+	title String required,
+	content TextBlob required,
+    	image ImageBlob,
+	date ZonedDateTime required,
+}
+
+relationship ManyToOne {
+	Post{categories(name)} to Categories
+}
+
+paginate Categories, Post with infinite-scroll

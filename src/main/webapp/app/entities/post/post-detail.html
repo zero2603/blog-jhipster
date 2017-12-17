@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-8" style="padding: 0px 20px; border:solid 1px #D2D7D3; border-radius: 10px">
+        <h3>{{vm.post.title}}</h3>
+        <small>Posted on {{vm.post.date}}</small><br>
+        <div>
+            <a ng-click="vm.openFile(vm.post.imageContentType, vm.post.image)">
+                <img data-ng-src="{{'data:' + vm.post.imageContentType + ';base64,' + vm.post.image}}" style="max-width: 100%;" alt="post image"/>
+            </a>
+        </div>
+        <br>    
+        <div align="justify">{{vm.post.content}}</div>
+        <br><br>
+
+        
+    </div>
+    <div class="col-md-4" style="padding: 0px 20px; ">
+        <div style="padding-bottom: 20px">
+            <button type="submit" ui-sref="{{ vm.previousState }}" class="btn btn-info">
+                <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+            </button>
+                    
+            <button type="button" ui-sref="post-detail.edit({id:vm.post.id})" class="btn btn-primary">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item" style="background-color:#019875; color:azure"><div align="center" style="font-weight: bolder"><h4>Lastest News</h4></div></li>
+            <li class="list-group-item" ng-repeat="post in vm.postbydate | limitTo: 5"><a ui-sref="post-detail({id:post.id})">{{post.title}}</a></li>
+        </ul>
+
+        <ul class="list-group">
+            <li class="list-group-item" style="background-color:#019875; color:azure"><div align="center" style="font-weight: bolder"><h4>All Categories</h4></div></li>
+            <li class="list-group-item" ng-repeat="categories in vm.allCategories | limitTo: 5"><a ui-sref="categories-detail({id:categories.id})">{{categories.name}}</a></li>
+        </ul>
+    </div>
+</div>

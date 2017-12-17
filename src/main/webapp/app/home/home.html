@@ -1,0 +1,16 @@
+<div ng-cloak>
+    <div class="row" align="center">
+        <div style="position: relative; text-align: center; color: white;">
+            <div align="center"><img src="content/images/background.png" alt=""></div>
+            <div style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); font-weight: 900; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                <h1>JHipster - Generate your Spring Boot + Angular apps!</h1>
+            </div>
+        </div>
+        
+        <h2>All Categories</h2>
+        <div class="floating-box" ng-repeat="categories in vm.allCategories">
+            <img data-ng-src="{{'data:' + categories.avatarContentType + ';base64,' + categories.avatar}}" style="max-width: 200px;" ui-sref="categories-detail({id:categories.id})" alt="categories image"/>
+            <a ui-sref="categories-detail({id:categories.id})"><h4>{{categories.name}}</h4></a>
+        </div>
+    </div>
+</div>

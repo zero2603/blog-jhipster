@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="blogApp.categories.detail.title">Categories</span> {{vm.categories.name}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+
+    <div>
+        Edit this categories: 
+        <button type="submit" ui-sref="{{ vm.previousState }}" class="btn btn-info">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        </button>
+
+        <button type="button" ui-sref="categories-detail.edit({id:vm.categories.id})" class="btn btn-primary">
+            <span class="glyphicon glyphicon-pencil"></span>
+            <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+        </button>
+    </div>
+
+    <h2>All posts in categories {{vm.categories.name}}</h2>
+
+    <div ng-repeat="post in vm.postbycategories" style="padding: 30px 124px">
+        <div align="center">
+            <a ng-if="post.image" ui-sref="post-detail({id:post.id})">
+                <img data-ng-src="{{'data:' + post.imageContentType + ';base64,' + post.image}}" style="" alt="post image"/>
+            </a>
+        </div>
+        <h3><a ui-sref="post-detail({id:post.id})">{{post.title}}</a></h3>
+        <small>Post on {{post.date}}</small>
+        <div align="justify">{{post.content | limitTo: 300}}...</div>
+    </div>
+</div>
